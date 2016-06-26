@@ -74,7 +74,25 @@ $(function(){
 
 <div data-role="page" id="foo">
 
-    <h1>1번</h1>
+    <div data-role="header">
+    	<h1>1번</h1>
+    </div><!-- /header --> 	 
+    
+    <div role="main" class="ui-content">
+
+        <p>I'm first in the source order so I'm shown as the page.</p>
+
+        <p>View internal page called bar</a></p>
+
+    </div><!-- /content -->
+
+
+
+    <div data-role="footer">
+
+        <h4>Page Footer</h4>
+
+    </div><!-- /footer -->
 
 </div><!-- /page -->
 
@@ -85,10 +103,9 @@ $(function(){
 <div data-role="page" id="bar">
 
     <div data-role="header">
-    	<h1>bar</h1>
+    	<h1>2번</h1>
     </div><!-- /header --> 	 
     
-    <h1>2번</h1>
     <div role="main" class="ui-content">
 
         <p>I'm first in the source order so I'm shown as the page.</p>
@@ -109,7 +126,10 @@ $(function(){
 
 <div data-role="page" id="koo">
 
-    <h1>3번</h1>
+    <div data-role="header">
+    	<h1>3번</h1>
+    </div><!-- /header --> 
+    
     <div role="main" class="ui-content">
 
         <p>I'm first in the source order so I'm shown as the page.</p>
