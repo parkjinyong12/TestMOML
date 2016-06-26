@@ -1,19 +1,19 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 
 <html>
 
 <head>
 
-<meta charset="utf-8">
+    <meta charset="utf-8">
 
-<title>jQuery Mobile Web App</title>
+    <title>jQuery Mobile Web App</title>
 
-<link href="css/jquery1.0a3.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery1.0a3.css" rel="stylesheet" type="text/css"/>
 
-<script src="js/jquery1.5.js" type="text/javascript"></script>
+    <script src="js/jquery1.5.js" type="text/javascript"></script>
 
-<script src="js/jquery_edit_v1.0.js" type="text/javascript"></script>
-<script>
+    <script src="js/jquery_edit_v1.0.js" type="text/javascript"></script>
+    <script>
 //AJAX호출
 $(document).ready(function () {   // 자동으로 실행되는 부분
 	$("#callData").click(function() {
@@ -23,61 +23,61 @@ $(document).ready(function () {   // 자동으로 실행되는 부분
 
 //화면이동 효과
 $(function(){
-		
+
 	//좌우 이동
-	//foo	
-	$("#foo").bind("swipeleft",function(){
-		$.mobile.changePage("#bar","slide");
+	//foo
+	$("#page1").bind("swipeleft",function(){
+		$.mobile.changePage("#page2","slide");
 	});
-	
+
 	//bar
-	$("#bar").bind("swipeleft",function(){
-		$.mobile.changePage("#koo","slide");
+	$("#page2").bind("swipeleft",function(){
+		$.mobile.changePage("#page3","slide");
 	});
-	
-	$("#bar").bind("swiperight",function(){	  
-		$.mobile.changePage("#foo","slide","reverse");
+
+	$("#page2").bind("swiperight",function(){
+		$.mobile.changePage("#page1","slide","reverse");
 	});
-	
+
 	//koo
-	$("#koo").bind("swiperight",function(){	  
-		$.mobile.changePage("#bar","slide","reverse");
+	$("#page3").bind("swiperight",function(){
+		$.mobile.changePage("#page2","slide","reverse");
 	});
-	
-	
+
+
 	//상하 이동
-	//foo	
-	$("#foo").bind("swipeup",function(){		
-		$.mobile.changePage("#bar","slideup");
+	//foo
+	$("#page1").bind("swipeup",function(){
+		$.mobile.changePage("#page2","slideup");
 	});
-	
+
 	//bar
-	$("#bar").bind("swipeup",function(){		
-		$.mobile.changePage("#koo","slideup");
+	$("#page2").bind("swipeup",function(){
+		$.mobile.changePage("#page3","slideup");
 	});
-	
-	$("#bar").bind("swipedown",function(){	
-		$.mobile.changePage("#foo","slidedown");
+
+	$("#page2").bind("swipedown",function(){
+		$.mobile.changePage("#page1","slidedown");
 	});
-	
+
 	//koo
-	$("#koo").bind("swipedown",function(){		
-		$.mobile.changePage("#bar","slidedown");
+	$("#page3").bind("swipedown",function(){
+		$.mobile.changePage("#page2","slidedown");
 	});
-		
+
 });
 </script>
-</head> 
+</head>
 
-<body> 
+<body>
 <!-- Start of first page -->
 
-<div data-role="page" id="foo">
+<div data-role="page" id="page1">
 
     <div data-role="header">
-    	<h1>1번</h1>
-    </div><!-- /header --> 	 
-    
+        <h1>1번</h1>
+    </div><!-- /header -->
+
     <div role="main" class="ui-content">
 
         <p>I'm first in the source order so I'm shown as the page.</p>
@@ -100,12 +100,12 @@ $(function(){
 
 <!-- Start of second page -->
 
-<div data-role="page" id="bar">
+<div data-role="page" id="page2">
 
     <div data-role="header">
-    	<h1>2번</h1>
-    </div><!-- /header --> 	 
-    
+        <h1>2번</h1>
+    </div><!-- /header -->
+
     <div role="main" class="ui-content">
 
         <p>I'm first in the source order so I'm shown as the page.</p>
@@ -124,12 +124,12 @@ $(function(){
 
 </div><!-- /page -->
 
-<div data-role="page" id="koo">
+<div data-role="page" id="page3">
 
     <div data-role="header">
-    	<h1>3번</h1>
-    </div><!-- /header --> 
-    
+        <h1>3번</h1>
+    </div><!-- /header -->
+
     <div role="main" class="ui-content">
 
         <p>I'm first in the source order so I'm shown as the page.</p>
