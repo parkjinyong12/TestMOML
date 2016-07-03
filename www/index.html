@@ -56,9 +56,9 @@
             $.mobile.changePage("#page2","slidedown");
         });
 
-        var screenHeight = screen.availHeight;
-        alert(screenHeight);
-        $("#map").css("height",screenHeight-350);
+        var windowHeight = window.innerWidth;
+        alert(windowHeight);
+        $("#map").css("height",windowHeight-350);
     });
 
 
