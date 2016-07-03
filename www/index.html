@@ -55,6 +55,9 @@
         $("#page3 .page-moving").bind("swipedown",function(){
             $.mobile.changePage("#page2","slidedown");
         });
+
+        var screenHeight = screen.availHeight;
+        $("#map").css("height",screenHeight-250);
     });
 
 
@@ -77,7 +80,7 @@
         <p>View internal page called bar</a></p>
 
     </div><!-- /content -->
-    <div id="map" style="width:100%; height:350px;">
+    <div id="map" style="width:100%; height:400px;">
 
     </div>
 
