@@ -7,10 +7,10 @@ var infoOldNum
 
 
 //지도 초기화 코드 입니다.
-function initialize() {  //함수 시작==================
+function initialize(mapid) {  //함수 시작==================
 
 //위에 정한 지도 표시 영역을 mapDiv 변수에 활당하고 있습니다.
-var mapDiv = document.getElementById('map');
+var mapDiv = document.getElementById(mapid);
 
 //위에서 전역변수로 활당한 map 이라는 변수에 지도를 생성 합니다.
 //지도를 생성하는 곳의 위치는 위에서 mapDiv 변수에 활당하여 넘겨 줍니다.
@@ -20,20 +20,20 @@ map = new google.maps.Map(mapDiv, {
 center: new google.maps.LatLng(37.5544, 126.9699),
 
 //zoom 값이 작으면 축소된 지도 크면 확대된 지도가 보입니다.
-zoom: 16,
+zoom: 12,
 
 //지도의 타입을 로드맵 형태로 잡았습니다.
 mapTypeId: google.maps.MapTypeId.ROADMAP
 });
 
-
-
 //지도를 초기화 하고 아래에서 정의한 마커 표시 함수를 실행하여 마커를 표시 한다.
 //dispMarks();
 
 
-
 }
+
+// 마커 세팅!!
+
 
 //마커를 지도에 표시 한다.
 //---------------------------------------------------------------------
@@ -106,4 +106,6 @@ infoWindow.setContent(myHtml);
 infoWindow.open(map, markobj[n]);
 });
 }
+
+
 
