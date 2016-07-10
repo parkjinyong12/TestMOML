@@ -7,172 +7,89 @@
 
 <script src="js/jquery1.5.js" type="text/javascript"></script>
 <script src="js/jquery_edit_v1.0.js" type="text/javascript"></script>
+<script src="js/test.js" type="text/javascript"></script>
 
 <script>
     //AJAX호출
     $(document).ready(function () {   // 자동으로 실행되는 부분
-        $("#callData").click(function() {
-            alert("111");
-        });
-
 
         //화면이동 효과
+        //fnMovingSetting();
+        $("#page1").find('a[data-role="button"]').css('width','40%');
+        $("#page1").find('a[data-role="button"]').css('margin','4%');
+
+        $("#page3").find('a[data-role="button"]').css('width','40%');
+        $("#page3").find('a[data-role="button"]').css('margin','4%');
+
+        $("#page4").find('a[data-role="button"]').css('width','90%');
+        $("#page4").find('a[data-role="button"]').css('margin','1.5% 4.5% 3% 4.5%');
+
+        $(".jd-button-box").css("top","320px");
+     });
+
+     //화면이동 효과
+     function fnMovingSetting() {
+
         //좌우 이동
-        //foo
-        $("#page1 .page-moving").bind("swipeleft",function(){
-            $.mobile.changePage("#page2","slide");
-            initialize();
-        });
+        //page1
+        fnMove("page1","swipeleft","page2","slide");
 
-        //bar
-        $("#page2 .page-moving").bind("swipeleft",function(){
-            $.mobile.changePage("#page3","slide");
-        });
-        $("#page2 .page-moving").bind("swiperight",function(){
-            $.mobile.changePage("#page1","slide","reverse");
-        });
+        //page2
+        fnMove("page2","swipeleft","page3","slide");
+        fnMove("page2","swiperight","page1","slide","reverse");
 
-        //koo
-        $("#page3 .page-moving").bind("swiperight",function(){
-            $.mobile.changePage("#page2","slide","reverse");
-            initialize();
-        });
-
+        //page3
+        fnMove("page3","swiperight","page2","slide","reverse");
+        fnMove("page3","swipeleft","page1","slide");
 
         //상하 이동
         //foo
-        $("#page1 .page-moving").bind("swipeup",function(){
-            $.mobile.changePage("#page2","slideup");
-            initialize();
-        });
+        fnMove("page1","swipeup","page2","slideup");
 
         //bar
-        $("#page2 .page-moving").bind("swipeup",function(){
-            $.mobile.changePage("#page3","slideup");
-        });
-        $("#page2 .page-moving").bind("swipedown",function(){
-            $.mobile.changePage("#page1","slidedown");
-        });
+        fnMove("page2","swipeup","page3","slideup");
+        fnMove("page2","swipedown","page1","slidedown");
 
         //koo
-        $("#page3 .page-moving").bind("swipedown",function(){
-            $.mobile.changePage("#page2","slidedown");
-            initialize();
-        });
+        fnMove("page3","swipedown","page2","slidedown");
+     };
 
-        var windowHeight = window.innerWidth;
-        $("#map").css("height",windowHeight);
-
-        checkLoginState();
-     });
-
-    // This is called with the results from from FB.getLoginStatus().
-    function statusChangeCallback(response) {
-        console.log('statusChangeCallback');
-        console.log(response);
-        // The response object is returned with a status field that lets the
-        // app know the current login status of the person.
-        // Full docs on the response object can be found in the documentation
-        // for FB.getLoginStatus().
-        if (response.status === 'connected') {
-          // Logged into your app and Facebook.
-          alert("접속한 상태");
-          testAPI();
-        } else if (response.status === 'not_authorized') {
-          // The person is logged into Facebook, but not your app.
-          document.getElementById('status').innerHTML = 'Please log ' +
-            'into this app.';
-          alert("인증안됨");
-        } else {
-          // The person is not logged into Facebook, so we're not sure if
-          // they are logged into this app or not.
-          document.getElementById('status').innerHTML = 'Please log ' +
-            'into Facebook.';
-          alert("아몰랑");
+     function fnGo(data) {
+        if(data == 'measure') {
+            $.mobile.changePage("#page3","slide","reverse");
+        } else if(data == 'search') {
+            $.mobile.changePage("#page2","slide");
+        } else if(data == 'registstation') {
+            $.mobile.changePage("#page4","slidedown");
         }
-    }
-
-     // This function is called when someone finishes with the Login
-     // Button.  See the onlogin handler attached to it in the sample
-     // code below.
-     function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-          statusChangeCallback(response);
-        });
-     }
-
-      window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '928883193907054',
-            cookie     : true,  // enable cookies to allow the server to access
-                                // the session
-            xfbml      : true,  // parse social plugins on this page
-            version    : 'v2.2' // use version 2.2
-          });
-
-          // Now that we've initialized the JavaScript SDK, we call
-          // FB.getLoginStatus().  This function gets the state of the
-          // person visiting this page and can return one of three states to
-          // the callback you provide.  They can be:
-          //
-          // 1. Logged into your app ('connected')
-          // 2. Logged into Facebook, but not your app ('not_authorized')
-          // 3. Not logged into Facebook and can't tell if they are logged into
-          //    your app or not.
-          //
-          // These three cases are handled in the callback function.
-
-          FB.getLoginStatus(function(response) {
-            statusChangeCallback(response);
-          });
-      };
-
-      // Load the SDK asynchronously
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-
-      // Here we run a very simple test of the Graph API after login is
-      // successful.  See statusChangeCallback() for when this call is made.
-      function testAPI() {
-        console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
-          console.log('Successful login for: ' + response.name);
-          document.getElementById('status').innerHTML =
-            'Thanks for logging in, ' + response.name + '!';
-      });
-  }
-
-
+     };
 </script>
 </head>
 <body>
 <!-- Start of first page -->
-
 <div data-role="page" id="page1">
-
-    <div class="page-moving" data-role="header">
-        <h1>1번</h1>
+    <div class="page-moving" data-role="header" data-position="fixed">
+        <h1>첫화면</h1>
     </div><!-- /header -->
 
-    <div role="main" class="ui-content page-moving">
+    <div role="main" class="ui-content page-moving" data-position="fixed">
 
-        <p>I'm first in the source order so I'm shown as the page.</p>
+        a<br>
+        a<br>
+        a<br>
+        a<br>
+        a<br>
+        a<br>
+        a<br>
 
-        <p>View internal page called bar</a></p>
 
     </div><!-- /content -->
 
-    <div id="status">
-    </div>
-    <div class="page-moving" data-role="footer">
-
-        <h4>Page Footer</h4>
-
+    <div class="page-moving" data-role="footer" data-position="fixed">
+        <p class="jd-button-box">
+            <a href="javascript:fnGo('measure');" data-role="button" data-inline="true">측정등록</a>
+            <a href="javascript:fnGo('search');" data-role="button" data-inline="true">확인하기</a>
+        </p>
     </div><!-- /footer -->
 
 </div><!-- /page -->
@@ -180,11 +97,11 @@
 
 
 <!-- Start of second page -->
-
+<!--측정치 조회-->
 <div data-role="page" id="page2">
 
     <div class="page-moving" data-role="header">
-        <h1>2번</h1>
+        <h1>측정치 조회</h1>
     </div><!-- /header -->
 
     <div role="main" class="ui-content page-moving">
@@ -198,124 +115,7 @@
     <div id="map" style="width:100%; height:400px;">
 
     </div>
-
-    <script type="text/javascript">  //자바스크립트 시작***************
-<!-- 여기에 자바스크립트 작성 -->
-
-var map;
-var infoWindow;
-var infoOldNum
-
-
-//지도 초기화 코드 입니다.
-﻿function initialize() {  //함수 시작==================
-
-  //위에 정한 지도 표시 영역을 mapDiv 변수에 활당하고 있습니다.
-  var mapDiv = document.getElementById('map');
-
-  //위에서 전역변수로 활당한 map 이라는 변수에 지도를 생성 합니다.
-  //지도를 생성하는 곳의 위치는 위에서 mapDiv 변수에 활당하여 넘겨 줍니다.
-  map = new google.maps.Map(mapDiv, {
-
-//임의의 위도, 경도 값으로 중심 위치를 잡습니다.
-center: new google.maps.LatLng(37.5544, 126.9699),
-
-//zoom 값이 작으면 축소된 지도 크면 확대된 지도가 보입니다.
-zoom: 16,
-
-//지도의 타입을 로드맵 형태로 잡았습니다.
-mapTypeId: google.maps.MapTypeId.ROADMAP
-});
-
-
-
-//지도를 초기화 하고 아래에서 정의한 마커 표시 함수를 실행하여 마커를 표시 한다.
-//dispMarks();
-
-
-
-}
-
-
-
-
-
-
-//마커를 지도에 표시 한다.
-//---------------------------------------------------------------------
-//캠핑장 아이콘을 표시 한다.
-
-//각 캠핑장의 위치를 배열에 넣어서 지도에 표시 할 수 있도록 합니다.
-//위도, 경도를 배열에 저장한다.
-var latarray = new Array("37.4419", "37.4519", "37.4719");
-var longarray = new Array("122.1419", "122.1419", "122.1419");
-
-function dispMarks(){
-
-       //마커를 클릭할 경우 말풍선을 표시 할 수 있도록 하는 변수를 선언한다.
-    infoWindow = new google.maps.InfoWindow();
-
-
-   for(var c = 0; c < 3; c++){
-         //아래에서 정의한 마커생성 함수를 마커 갯수만큼 돌리면서 마커를 만든다.
-       createMarker(map, c);
-   }
-
-}
-
-//마커 생성하고 표시 하기
-//---------------------------------------------------------------------
-
-//생성된 마커를 저장할 변수를 활당한다.
-var markobj = new Array();
-
-
-
-//위에서 처럼 지도에 캠핑장 텐트 아이콘을 찍는 함수.
-function createMarker(map, n) {
-
-//아이콘으로 사용할 이미지는 미리 준비하세요.
-//여기서는 campIcon.png 라는 이름으로 이미지를 만들었습니다.
-//이미지가 있는 곳의 경로와 함께 icon 변수에 활당 하세요.
-
-var icon = "/images/campIcon.png";
-
-
-    //미리 생성한 위도, 경도값을 이용하여 마커의 표시 위치를 latLng 변수에 활당한다.
-    var latLng = new google.maps.LatLng(latarray[n], longarray[n]);
-
-
-   //위에서 생성한 변수에 각 마커의 정보를 저장한다.
-    markobj[n] = new google.maps.Marker({
-      position: latLng,  //마커의 표시 위치를 활당한다.
-      map: map,    //위에서 초기화 하여 생성한 지도를 활당 합니다.
-      icon: icon    //위에서 준비한 이미지를 아이콘으로 설정 합니다.
-    });
-
-
-//마커를 클릭했을 때 아래와 같이 풍선도움말이 표시되게 한다.
-
-
-
-    //마커를 클릭하면 실행되는 함수 이다.
-    google.maps.event.addListener(markobj[n], 'click', function() {
-     //먼저 클릭한 안내를 삭제 한다.
-     infoWindow.close(map, infoOldNum);
-
- if(infoOldNum != n) infoOldNum = n;
-
-
-     var myHtml = '<div >Hello, world</div>';
-
-
-     infoWindow.setContent(myHtml);
-     infoWindow.open(map, markobj[n]);
-    });
-  }
-</script>
-
-
-
+    <script src="js/googleMap.js" type="text/javascript"></script>
     <div class="page-moving" data-role="footer">
 
         <h4>Page Footer</h4>
@@ -324,10 +124,11 @@ var icon = "/images/campIcon.png";
 
 </div><!-- /page -->
 
+<!--측정방법 선택-->
 <div data-role="page" id="page3">
 
     <div class="page-moving" data-role="header">
-        <h1>3번</h1>
+        <h1>측정 등록하기</h1>
     </div><!-- /header -->
 
     <div role="main" class="ui-content page-moving">
@@ -340,6 +141,62 @@ var icon = "/images/campIcon.png";
 
 
 
+    <div class="page-moving" data-role="footer" data-position="fixed">
+
+        <p class="jd-button-box">
+            <a href="javascript:fnGo('registstation');" data-role="button" data-inline="true">정기측정</a>
+            <a href="javascript:fnGo('search');" data-role="button" data-inline="true">1회측정</a>
+        </p>
+
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+
+<!--측정방법 선택-->
+<div data-role="page" id="page4">
+
+    <div class="page-moving" data-role="header">
+        <h1>정기측정소 등록</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content page-moving">
+
+        <p>I'm first in the source order so I'm shown as the page.</p>
+
+        <p>View internal page called bar</a></p>
+
+    </div><!-- /content -->
+
+    <div class="page-moving" data-role="footer" data-position="fixed">
+
+        <a href="javascript:fnGo('measure');" data-role="button">직접등록</a>
+        <a href="javascript:fnGo('search');" data-role="button">페이스북등록</a>
+        <a href="javascript:fnGo('search');" data-role="button">카카오톡등록</a>
+
+    </div><!-- /footer -->
+
+</div><!-- /page -->
+
+<!--측정치 입력-->
+<div data-role="page" id="page5">
+
+    <div class="page-moving" data-role="header">
+        <h1>측정치 입력</h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content page-moving">
+
+        <p>I'm first in the source order so I'm shown as the page.</p>
+
+        <p>View internal page called bar</a></p>
+
+    </div><!-- /content -->
+
+    <div id="map2" style="width:100%; height:400px;">
+
+    </div>
+    <script src="js/googleMap.js" type="text/javascript"></script>
     <div class="page-moving" data-role="footer">
 
         <h4>Page Footer</h4>
@@ -347,6 +204,8 @@ var icon = "/images/campIcon.png";
     </div><!-- /footer -->
 
 </div><!-- /page -->
+
+
 
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAl1J4EuXhHYAnBKBb-VnYco2nIZdx5V7k&sensor=true"></script>
 
