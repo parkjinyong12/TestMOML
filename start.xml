@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<MOML>
-    <UILAYOUT portrait="320,460" landscape="320,460">
-        <LABEL text="Hello MOML !" />
-        <WEBVIEW layout="0,0,320,460" loadSrc="www/index.html" clientControl="false"/>
-    </UILAYOUT>
+<?xml version="1.0" encoding="utf-8"?>
+<MOML version="1.1.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.applusform.com/xsd/moml_ui_1.1.8.xsd">
+<UILAYOUT portrait="320,480" landscape="320,480">
+    <WEBVIEW layout="0,0,320,460" loadSrc="file:///android_asset/www/html/index.html" clientControl="false"/>
+</UILAYOUT>
 </MOML>
+
