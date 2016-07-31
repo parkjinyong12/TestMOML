@@ -1,1 +1,38 @@
-.jd_input{margin:10px;}
+
+#page3_header div{display:inline-block;}
+#page3_header_span, #page3_header_h1_1 {display:inline-block;}
+
+/* ui-title클래스 확장형 */
+#page3_header_span {
+text-align: center; font-size: 16px;
+text-overflow: ellipsis; overflow: hidden; white-space: nowrap; outline: 0 !important;
+/* 변경 */
+margin: .6em 0 .8em;  padding: 0 0 0 30%;
+/* 추가 */
+border-left: 1px solid white;
+}
+
+.jd_input{margin:5px;}
+/* id */
+#page3_label_id, #page3_input_id {display:inline-block;}
+#page3_label_id {width:20%; text-align:right;}
+#page3_input_id {width:65%}
+/* password */
+#page3_label_password, #page3_input_password {display:inline-block;}
+#page3_label_password {width:20%; text-align:right;}
+#page3_input_password {width:65%}
+
+#page3 .main-content {
+    padding: 0 0 0 7%;
+}
+
+.main-content {
+    background-image:url("../css/images/background_main.png");
+    height:400px;
+}
+.main-content p {
+   margin:50% 10% 40% 10%;
+   text-align:center;
+   font-size: 200%;
+   background-color:#ffffff;
+}
